@@ -4,6 +4,8 @@
 This project gives us a introduction to sorting algorithms and their implementation in solving problems.
 
 **"Instructions"**
+to compile it 
+cc42 -I includes src/*.c libft/libft.a
 
 
 **"Resources"**
@@ -11,7 +13,7 @@ This project gives us a introduction to sorting algorithms and their implementat
 
 chunk sorting: 
 	parse input
-	check duplicates
+	check duplicate
 	create indexes
 	hardcode small cases
 	splitting A in chunks (number of chunks depending on number of elements)
