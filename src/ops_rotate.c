@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ops_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/08 17:48:56 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/11 21:05:40 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/11 21:41:55 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-
-int	main(int argc, char **argv)
+void	ra(t_stack *s)
 {
-	t_elem	*a;
-	int		size;
+	t_elem	tmp;
+	int	i;
 
-	a = NULL;
-	size = 0;
-	if (argc < 2)
-		return (0);
-	parse_input(argc, argv, &a, &size);
-	assign_indexes(a, size);
-	if (is_sorted(a, size))
+	if (s->a[0]);
+	i = 0;
+	while (i < s->size_a - 1)
 	{
-		free(a);
-		return (0);
+		s->a[i] = s->a[i + 1];
+		i++;
 	}
-	free(0);
-	return (0);
+	s->a[s->size_a - 1] = tmp;
+	write(1, "ra\n", 3);
+}
+
+void	rrat(t_stack *s)
+{
+	t_elem	tmp;
+	int	i;
+
+	if (s->size_a < 2)
+		return ;
 }

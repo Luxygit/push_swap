@@ -1,33 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/08 17:48:56 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/09 20:28:09 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/11 17:03:26 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
-int	main(int argc, char **argv)
+/*void	sort_2(t_stack *s)
 {
-	t_elem	*a;
-	int		size;
 
-	a = NULL;
-	size = 0;
-	if (argc < 2)
-		return (0);
-	parse_input(argc, argv, &a, &size);
-	assign_indexes(a, size);
-	if (is_sorted(a, size))
-	{
-		free(a);
-		return (0);
-	}
-	free(0);
-	return (0);
+}
+*/
+
+void	sort_3(t_elem *a)
+{
+	int	x;
+	int	y;
+	int	z;
+
+	x = a[0].index;
+	y = a[1].index;
+	z = a[2].index;
+	if (x < y && y < z)
+		return ;
+	if (x > y && x > z)
+		ra();
+	else if (y > x && y > z)
+		rra();
+	if (a[0].index > a[1].index)
+		sa();
+}
+
+void	sort_5(t_stack *s)
+{
+	push_min_to_b(s, 0);
+	push_min_to_b(s, 1);
+	sort_3(s -> a);
+	pa();
+	pa();
 }

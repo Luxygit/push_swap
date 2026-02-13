@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/08 17:48:56 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/09 20:35:34 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/10 22:17:43 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int	find_pos(t_elem *a, int size, int target)
 {
-	t_elem	*a;
-	int		size;
+	int	i;
 
-	a = NULL;
-	size = 0;
-	if (argc < 2)
-		return (0);
-	parse_input(argc, argv, &a, &size);
-	assign_indexes(a, size);
-	if (is_sorted(a, size))
+	i = 0;
+	while (i < size)
 	{
-		free(a);
-		return (0);
+		if (a[i].index == target)
+			return (i);
+		i++;
 	}
-	free(0);
-	return (0);
+	return (-1);
+}
+
+void	bring_to_top(t_stack *s, int target)
+{
+	int	pos;
+
+	pos = find_pos(s -> a, s -> size_a, target);
+	if (pos < 0)
+		error_exit();
+	while (s -> a[0].index != target)
+	{
+		if (pos <= s -> size_a/2)
+			ra();
+		else
+			rra();
+		pos = find_pos(s -> a, s -> size_a, target);
+	}
 }

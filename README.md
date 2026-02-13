@@ -21,3 +21,10 @@ chunk sorting:
 		IF  number is lower than the middle of the chunk then RB
 	ELSE rotate A
 	WHILE B not empty rotate or reverserotate B to find max and push it to A
+
+	Make a temporary copy of all values
+	Sort that copy (any simple sort is fine)
+	For each element in stack A:
+	find where its value appears in the sorted copy
+	assign that position as its index
+	wWhile doing this → detect duplicates

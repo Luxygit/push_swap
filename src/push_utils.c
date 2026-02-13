@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/08 17:48:56 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/10 21:58:43 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/11 16:58:26 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+void	push_min_to_b(t_stack *s, int target)
 {
-	t_elem	*a;
-	int		size;
+	bring_to_top(s, target);
+	pb();
+}
 
-	a = NULL;
-	size = 0;
-	if (argc < 2)
-		return (0);
-	parse_input(argc, argv, &a, &size);
-	assign_indexes(a, size);
-	if (is_sorted(a, size))
+void	push_chunk_to_b(t_stack *s, int min, int max)
+{
+	int	pushed;
+
+	pushed = 0;
+	while (pushed < (max - min + 1))
 	{
-		free(a);
-		return (0);
+		if (in_chunk(s -> a[0].index, min, max))
+		{
+			pb();
+			pushed++;
+		}
+		else
+			ra();
 	}
-	free(0);
-	return (0);
 }
