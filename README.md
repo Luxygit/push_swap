@@ -11,20 +11,23 @@ cc42 -I includes src/*.c libft/libft.a
 **"Resources"**
 
 
-chunk sorting: 
+Parsing and indexing: 
 	parse input
 	check duplicate
 	create indexes
-	hardcode small cases
-	splitting A in chunks (number of chunks depending on number of elements)
-	IF top A element is within each chunk then push to B
-		IF  number is lower than the middle of the chunk then RB
-	ELSE rotate A
-	WHILE B not empty rotate or reverserotate B to find max and push it to A
-
 	Make a temporary copy of all values
 	Sort that copy (any simple sort is fine)
 	For each element in stack A:
 	find where its value appears in the sorted copy
 	assign that position as its index
-	wWhile doing this → detect duplicates
+
+	hardcode small cases
+
+	chunk sorting:
+	splitting A in chunks (number of chunks depending on number of elements)
+	IF top A element index is within each chunk then push to B
+		IF  number is lower than the middle of the chunk then RB
+		to keep bigger numbers at the top.
+	ELSE rotate A
+	WHILE B not empty rotate or reverserotate B to find max and push it to A
+

@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 21:58:43 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/11 16:58:26 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:57:48 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	push_min_to_b(t_stack *s, int target)
 {
 	bring_to_top(s, target);
-	pb();
+	pb(s);
 }
 
 void	push_chunk_to_b(t_stack *s, int min, int max)
@@ -27,10 +27,10 @@ void	push_chunk_to_b(t_stack *s, int min, int max)
 	{
 		if (in_chunk(s -> a[0].index, min, max))
 		{
-			pb();
+			pb(s);
 			pushed++;
 		}
 		else
-			ra();
+			ra(s);
 	}
 }

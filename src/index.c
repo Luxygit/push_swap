@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:21:36 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/09 16:53:08 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/16 08:40:42 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,18 @@ int	find_index(int *arr, int size, int value)
 	return (-1);
 }
 
-void	assign_indexes(t_elem *a, int size)
+void	assign_indexes(t_stack *s)
 {
-	int	*tmp;
 	int	i;
-	int	idx;
+	int	*sorted;
 
-	tmp = copy_values(a, size);
-	sort_int_array(tmp, size);
+	sorted = copy_values(s->a, s->size_a);
+	sort_int_array(sorted, s->size_a);
 	i = 0;
-	while (i < size)
+	while (i < s->size_a)
 	{
-		idx = find_index(tmp, size, a[i].value);
-		if (idx < 0)
-			error_exit();
-		a[i].index = idx;
+		s->a[i].index = find_index(sorted, s->size_a, s->a[i].value);
 		i++;
 	}
-	free(tmp);
+	free(sorted);
 }

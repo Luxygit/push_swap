@@ -1,85 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_rotate.c                                       :+:      :+:    :+:   */
+/*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 21:05:40 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/16 20:31:37 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/15 17:27:16 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/15 18:00:56 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ra(t_stack *s)
+void	pb(t_stack *s)
 {
 	t_elem	tmp;
 	int		i;
 
-	if (s->size_a < 2)
+	if (s->size_a == 0)
 		return ;
 	tmp = s->a[0];
 	i = 0;
-	while (i < s->size_a - 1)
+	while (i < s->size_a -1)
 	{
 		s->a[i] = s->a[i + 1];
 		i++;
 	}
-	s->a[s->size_a - 1] = tmp;
-	write(1, "ra\n", 3);
-}
-
-void	rra(t_stack *s)
-{
-	t_elem	tmp;
-	int		i;
-
-	if (s->size_a < 2)
-		return ;
-	tmp = s->a[s->size_a - 1];
-	i = s->size_a - 1;
+	s->size_a--;
+	i = s->size_b;
 	while (i > 0)
 	{
-		s->a[i] = s->a[i -1];
+		s->b[i] = s->b[i - 1];
 		i--;
 	}
-	s->a[0] = tmp;
-	write(1, "rra\n", 4);
+	s->b[0] = tmp;
+	s->size_b++;
+	write(1, "pb\n", 3);
 }
 
-void	rb(t_stack *s)
+void	pa(t_stack *s)
 {
 	t_elem	tmp;
 	int		i;
 
-	if (s->size_b < 2)
+	if (s->size_b == 0)
 		return ;
 	tmp = s->b[0];
 	i = 0;
-	while (i < s->size_b - 1)
+	while (i < s->size_b -1)
 	{
 		s->b[i] = s->b[i + 1];
 		i++;
 	}
-	s->b[s->size_b - 1] = tmp;
-	write(1, "rb\n", 3);
-}
-
-void	rrb(t_stack *s)
-{
-	t_elem	tmp;
-	int		i;
-
-	if (s->size_b < 2)
-		return ;
-	tmp = s->b[s->size_b - 1];
-	i = s->size_b - 1;
+	s->size_b--;
+	i = s->size_a;
 	while (i > 0)
 	{
-		s->b[i] = s->b[i -1];
+		s->a[i] = s->a[i - 1];
 		i--;
 	}
-	s->b[0] = tmp;
-	write(1, "rrb\n", 4);
+	s->a[0] = tmp;
+	s->size_a++;
+	write(1, "pa\n", 3);
 }

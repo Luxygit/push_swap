@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   chunk_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/16 20:45:35 by dievarga         ###   ########.fr       */
+/*   Created: 2026/02/16 20:10:05 by dievarga          #+#    #+#             */
+/*   Updated: 2026/02/16 22:47:58 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+int	get_chunk_count(int size)
 {
-	t_stack	s;
+	if (size <= 100)
+		return (5);
+	return (9);
+}
 
-	if (argc < 2)
-		return (0);
-	parse_input(&s, argc, argv);
-	assign_indexes(&s);
-	if (!is_sorted(&s))
-	{
-		if (s.size_a <= 5)
-			sort_small(&s);
-		else
-			sort_large(&s);
-	}
-	free_stack(&s);
-	return (0);
+void	handle_push(t_stack *s, int *pushed, int max, int chunk)
+{
+	pb(s);
+	(*pushed)++;
+	if (s->b[0].index < max - (chunk / 2))
+		rb(s);
 }

@@ -6,27 +6,11 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:35 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/04 19:21:42 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:32:59 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static	char	*join_args(int argc, char **argv)
-{
-	char	*res;
-	int		i;
-
-	i = 1;
-	res = ft_strdup("");
-	while (i < argc)
-	{
-		res = ft_strjoin(res, argv[i]);
-		res = ft_strjoin(res, " ");
-		i++;
-	}
-	return (res);
-}
 
 static	long	ft_atol_safe(char *str)
 {
@@ -57,29 +41,51 @@ static	long	ft_atol_safe(char *str)
 	return (res * sign);
 }
 
-void	parse_input(int argc, char **argv, t_elem **a, int *size)
+void	parse_input(t_stack *s, int argc, char **argv)
 {
-	char	*joined;
-	char	**tokens;
-	int		i;
+	char	**numbers;
 
-	joined = join_args(argc, argv);
-	tokens = ft_split(joined, ' ');
-	free(joined);
-	i = 0;
-	while (tokens[i])
-		i++;
-	*size = i;
-	*a = malloc(sizeof(t_elem) * (*size));
-	if (!(*a))
+	if (argc == 2)
+		numbers = ft_split(argv[1], ' ');
+	else
+		numbers = argv + 1;
+	fill_stacks(s, numbers);
+	if (argc == 2)
+		free_split(numbers);
+}
+
+void	fill_stacks(t_stack *s, char **numbers)
+{
+	int	i;
+	int	count;
+
+	count = count_strings(numbers);
+	s->size_a = count;
+	s->size_b = 0;
+	s->a = malloc(sizeof(t_elem) * count);
+	s->b = malloc(sizeof(t_elem) * count);
+	if (!s->a || !s->b)
 		error_exit();
 	i = 0;
-	while (i < *size)
+	while (i < count)
 	{
-		(*a)[i].value = (int)ft_atol_safe(tokens[i]);
-		(*a)[i].index = -1;
-		free(tokens[i]);
+		s->a[i].value = ft_atol_safe(numbers[i]);
 		i++;
 	}
-	free(tokens);
+	check_duplicates(s);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
