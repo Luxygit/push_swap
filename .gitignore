@@ -1,3 +1,4 @@
 *.swp
 *.pch
-
+*.out
+checker_MAC
