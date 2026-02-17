@@ -6,43 +6,61 @@
 #    By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:31:55 by dievarga          #+#    #+#              #
-#    Updated: 2026/01/08 17:58:18 by dievarga         ###   ########.fr        #
+#    Updated: 2026/02/17 17:12:49 by dievarga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Compiler and flags -i cflag would include some dir to be searched for headers
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -I.
+CFLAGS  = -Wall -Wextra -Werror
 
-# Library name
-NAME    = push_swap.a
+NAME    = push_swap
 
-# Source and object files
-SRCS	= main.c
+SRC_DIR	= src
+LIBFT_DIR = libft
+INC_DIR = includes
 
-OBJ     = $(SRCS:%.c=%.o)
-HEADER = push_swap.h
+INCLUDES = -I $(INC_DIR) -I $(:LIBFT_DIR)
 
-# Default rule
+LIBFT	= $(LIBFT_DIR)/libft.a
+
+SRCS	= \
+		src/main.c \
+		src/parse.c \
+		src/error.c \
+		src/index.c \
+		src/chunk_utils.c \
+		src/init.c \
+		src/ops_push.c \
+		src/ops_swap.c \
+		src/push_utils.c \
+		src/sort_small.c \
+		src/utils.c \
+		src/index.c \
+		src/ops_rotate.c \
+		src/sort_chunks.c \
+		src/stack_utils.c
+
+OBJS	= $(SRCS:.c=.o)
+
 all: $(NAME)
 
-# Rule to create the library
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(LIBFT) $(OBJS)
+	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
 
-# Rule to compile .c to .o
-%.o: %.c $(HEADER) Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
-# Clean object files
+%.o: %.c $(INC_DIR)/push_swap.h Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
+	$(MAKE) clean -C $(LIBFT_DIR)
 
-# Clean objects + library
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
-# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re

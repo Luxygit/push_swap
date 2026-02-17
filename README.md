@@ -2,32 +2,40 @@
 
 **"Description"**
 This project gives us a introduction to sorting algorithms and their implementation in solving problems.
+The goal is to sort a list of integers using a limited set of stack operations, producing the smallest possible number of moves.
 
 **"Instructions"**
-to compile it 
-cc42 -I includes src/*.c libft/libft.a
+To be compiled with its makefile that at the same time compiles first the libft library with its own
+makefile and then the push_swap program is compiled.
 
 
 **"Resources"**
+This implementation uses:
 
-
-Parsing and indexing: 
-	parse input
-	check duplicate
-	create indexes
-	Make a temporary copy of all values
-	Sort that copy (any simple sort is fine)
-	For each element in stack A:
-	find where its value appears in the sorted copy
-	assign that position as its index
-
-	hardcode small cases
-
-	chunk sorting:
-	splitting A in chunks (number of chunks depending on number of elements)
+- ft_atol_safe to clean the input
+- duplicates check
+- a sorted copy of stack A
+- Index normalization 
+- Chunk-based sorting strategy
 	IF top A element index is within each chunk then push to B
 		IF  number is lower than the middle of the chunk then RB
 		to keep bigger numbers at the top.
-	ELSE rotate A
-	WHILE B not empty rotate or reverserotate B to find max and push it to A
+	Else rotate A until element index belongs to the chunk
+- Optimized push-back phase
+	WHILE B is not empty rotate it or reverserotate it to find the max index
+### Small Inputs (≤ 5 numbers)
+Specialized sorting functions:
+- sort_2
+- sort_3
+- sort_4
+- sort_5
 
+### Large Inputs (> 5 numbers)
+- Divide input into chunks
+- Push chunks to stack B
+- Keep B partially structured
+- Push back largest elements efficiently
+
+Optimized chunk configuration:
+- ≤ 100 numbers → 5 chunks
+- 500 numbers → 9 chunks
