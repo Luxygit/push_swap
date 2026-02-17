@@ -6,7 +6,7 @@
 #    By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:31:55 by dievarga          #+#    #+#              #
-#    Updated: 2026/02/17 17:12:49 by dievarga         ###   ########.fr        #
+#    Updated: 2026/02/17 19:00:06 by dievarga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,13 @@ SRC_DIR	= src
 LIBFT_DIR = libft
 INC_DIR = includes
 
-INCLUDES = -I $(INC_DIR) -I $(:LIBFT_DIR)
+INCLUDES = -I $(INC_DIR) -I $(LIBFT_DIR)
 
 LIBFT	= $(LIBFT_DIR)/libft.a
 
 SRCS	= \
 		src/main.c \
 		src/parse.c \
-		src/error.c \
 		src/index.c \
 		src/chunk_utils.c \
 		src/init.c \
@@ -35,7 +34,6 @@ SRCS	= \
 		src/push_utils.c \
 		src/sort_small.c \
 		src/utils.c \
-		src/index.c \
 		src/ops_rotate.c \
 		src/sort_chunks.c \
 		src/stack_utils.c

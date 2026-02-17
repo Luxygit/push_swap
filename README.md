@@ -23,14 +23,15 @@ This implementation uses:
 	Else rotate A until element index belongs to the chunk
 - Optimized push-back phase
 	WHILE B is not empty rotate it or reverserotate it to find the max index
-### Small Inputs (≤ 5 numbers)
-Specialized sorting functions:
+
+Small Inputs (≤ 5 numbers)
+Hard-coded sorting functions:
 - sort_2
 - sort_3
 - sort_4
 - sort_5
 
-### Large Inputs (> 5 numbers)
+Large Inputs (> 5 numbers)
 - Divide input into chunks
 - Push chunks to stack B
 - Keep B partially structured
@@ -39,3 +40,9 @@ Specialized sorting functions:
 Optimized chunk configuration:
 - ≤ 100 numbers → 5 chunks
 - 500 numbers → 9 chunks
+
+Testing
+- Generate 500 random numbers
+ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' ')
+./push_swap $ARG | ./checker_linux $ARG
+./push_swap $ARG | wc -l
