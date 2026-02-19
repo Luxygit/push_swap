@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:21:36 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/16 08:40:42 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/19 19:21:40 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static	void	sort_int_array(int *arr, int size)
 	}
 }
 
-int	*copy_values(t_elem *a, int size)
+static int	*copy_values(t_stack *s, t_elem *a, int size)
 {
 	int	*tmp;
 	int	i;
 
 	tmp = malloc(sizeof(int) * size);
 	if (!tmp)
-		error_exit();
+		error_exit(s);
 	i = 0;
 	while (i < size)
 	{
@@ -53,7 +53,7 @@ int	*copy_values(t_elem *a, int size)
 	return (tmp);
 }
 
-int	find_index(int *arr, int size, int value)
+static int	find_index(int *arr, int size, int value)
 {
 	int	i;
 
@@ -72,7 +72,7 @@ void	assign_indexes(t_stack *s)
 	int	i;
 	int	*sorted;
 
-	sorted = copy_values(s->a, s->size_a);
+	sorted = copy_values(s, s->a, s->size_a);
 	sort_int_array(sorted, s->size_a);
 	i = 0;
 	while (i < s->size_a)

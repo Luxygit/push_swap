@@ -6,13 +6,13 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:00:45 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/16 20:37:16 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/19 19:16:41 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_max_pos(t_stack *s)
+static int	find_max_pos(t_stack *s)
 {
 	int		max;
 	int		pos;
@@ -35,9 +35,10 @@ int	find_max_pos(t_stack *s)
 	return (pos);
 }
 
-void	push_back_to_a(t_stack *s)
+static void	push_back_to_a(t_stack *s)
 {
 	int	pos;
+	int	rrb_count;
 
 	while (s->size_b > 0)
 	{
@@ -49,14 +50,15 @@ void	push_back_to_a(t_stack *s)
 		}
 		else
 		{
-			while (pos++ < s->size_b)
+			rrb_count = s->size_b - pos;
+			while (rrb_count-- > 0)
 				rrb(s);
 		}
 		pa(s);
 	}
 }
 
-void	push_chunks_to_b(t_stack *s)
+static void	push_chunks_to_b(t_stack *s)
 {
 	int	size;
 	int	chunk;
@@ -73,9 +75,11 @@ void	push_chunks_to_b(t_stack *s)
 			handle_push(s, &pushed, max, chunk);
 		else
 			ra(s);
-		if (pushed == chunk)
+		if (pushed == chunk || s->size_a == 0 || max >= size)
 		{
 			max += chunk;
+			if (max > size)
+				max = size;
 			pushed = 0;
 		}
 	}

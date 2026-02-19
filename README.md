@@ -13,9 +13,9 @@ makefile and then the push_swap program is compiled.
 This implementation uses:
 
 - ft_atol_safe to clean the input
-- duplicates check
 - a sorted copy of stack A
-- Index normalization 
+- Index normalization
+- Hard coded Small sorting cases
 - Chunk-based sorting strategy
 	IF top A element index is within each chunk then push to B
 		IF  number is lower than the middle of the chunk then RB
@@ -23,23 +23,6 @@ This implementation uses:
 	Else rotate A until element index belongs to the chunk
 - Optimized push-back phase
 	WHILE B is not empty rotate it or reverserotate it to find the max index
-
-Small Inputs (≤ 5 numbers)
-Hard-coded sorting functions:
-- sort_2
-- sort_3
-- sort_4
-- sort_5
-
-Large Inputs (> 5 numbers)
-- Divide input into chunks
-- Push chunks to stack B
-- Keep B partially structured
-- Push back largest elements efficiently
-
-Optimized chunk configuration:
-- ≤ 100 numbers → 5 chunks
-- 500 numbers → 9 chunks
 
 Testing
 - Generate 500 random numbers

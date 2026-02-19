@@ -6,7 +6,7 @@
 #    By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:31:55 by dievarga          #+#    #+#              #
-#    Updated: 2026/02/17 19:00:06 by dievarga         ###   ########.fr        #
+#    Updated: 2026/02/19 20:08:10 by dievarga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,16 +27,14 @@ SRCS	= \
 		src/main.c \
 		src/parse.c \
 		src/index.c \
-		src/chunk_utils.c \
-		src/init.c \
+		src/utils.c \
 		src/ops_push.c \
 		src/ops_swap.c \
-		src/push_utils.c \
-		src/sort_small.c \
-		src/utils.c \
 		src/ops_rotate.c \
+		src/sort_small.c \
 		src/sort_chunks.c \
-		src/stack_utils.c
+		src/stack_utils.c \
+		src/chunk_utils.c
 
 OBJS	= $(SRCS:.c=.o)
 

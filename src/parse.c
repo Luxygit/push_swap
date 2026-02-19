@@ -6,13 +6,13 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:35 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/16 20:32:59 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/19 20:10:57 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static	long	ft_atol_safe(char *str)
+static	long	ft_atol_safe(char *str, t_stack *s)
 {
 	long	res;
 	int		sign;
@@ -28,64 +28,82 @@ static	long	ft_atol_safe(char *str)
 		i++;
 	}
 	if (!str[i])
-		error_exit();
+		error_exit(s);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			error_exit();
+			error_exit(s);
 		res = res * 10 + (str[i] - '0');
-		if ((sign == 1 && res > INT_MAX) || (sign == -1 && - res < INT_MIN))
-			error_exit();
+		if (res > 2147483648L)
+			error_exit(s);
 		i++;
 	}
 	return (res * sign);
 }
 
+static void	check_duplicates(t_stack *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < s->size_a)
+	{
+		j = i + 1;
+		while (j < s->size_a)
+		{
+			if (s->a[i].value == s->a[j].value)
+				error_exit(s);
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	fill_stacks(t_stack *s, char **numbers)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	while (numbers[i])
+		i++;
+	count = i;
+	s->size_a = count;
+	s->size_b = 0;
+	s->a = malloc(sizeof(t_elem) * count);
+	s->b = malloc(sizeof(t_elem) * count);
+	if (!s->a || !s->b)
+		error_exit(s);
+	i = 0;
+	while (i < count)
+	{
+		s->a[i].value = ft_atol_safe(numbers[i], s);
+		i++;
+	}
+	check_duplicates(s);
+}
+
 void	parse_input(t_stack *s, int argc, char **argv)
 {
 	char	**numbers;
+	int		i;
 
 	if (argc == 2)
 		numbers = ft_split(argv[1], ' ');
 	else
 		numbers = argv + 1;
 	fill_stacks(s, numbers);
+	i = 0;
 	if (argc == 2)
-		free_split(numbers);
-}
-
-void	fill_stacks(t_stack *s, char **numbers)
-{
-	int	i;
-	int	count;
-
-	count = count_strings(numbers);
-	s->size_a = count;
-	s->size_b = 0;
-	s->a = malloc(sizeof(t_elem) * count);
-	s->b = malloc(sizeof(t_elem) * count);
-	if (!s->a || !s->b)
-		error_exit();
-	i = 0;
-	while (i < count)
 	{
-		s->a[i].value = ft_atol_safe(numbers[i]);
-		i++;
+		if (!numbers)
+			return ;
+		while (numbers[i])
+		{
+			free(numbers[i]);
+			i++;
+		}
+		free(numbers);
 	}
-	check_duplicates(s);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
 }
