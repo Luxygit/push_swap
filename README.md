@@ -16,13 +16,9 @@ This implementation uses:
 - a sorted copy of stack A
 - Index normalization
 - Hard coded Small sorting cases
-- Chunk-based sorting strategy
-	IF top A element index is within each chunk then push to B
-		IF  number is lower than the middle of the chunk then RB
-		to keep bigger numbers at the top.
-	Else rotate A until element index belongs to the chunk
-- Optimized push-back phase
-	WHILE B is not empty rotate it or reverserotate it to find the max index
+- Chunk-based sorting strategy: 
+
+IF top A element index is within each chunk then push to B / IF  number is lower than the middle of the chunk then RB to keep bigger numbers at the top. / Else rotate A until element index belongs to the chunk / WHILE B is not empty rotate it or reverserotate it to find the max index
 
 Testing
 - Generate 500 random numbers
