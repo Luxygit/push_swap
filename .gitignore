@@ -3,5 +3,5 @@
 *.out
 checker_Mac
 checker_Linux
-*.o
+src/*.o
 push_swap
