@@ -29,7 +29,7 @@ For Linux
 <code>ARG=$(seq -1000 1000 | shuf -n 500 | tr '\n' ' ')</code>
 
 For Mac
-<code>jot -r 500 -1000 1000</code>
+<code>ARG=$(jot -r 500 -1000 1000)</code>
 
 <code>./push_swap $ARG | ./checker_linux $ARG</code>
 
