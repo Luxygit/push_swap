@@ -29,8 +29,8 @@ For Linux
 <code>ARG=$(seq -1000 1000 | shuf -n 500 | tr '\n' ' ')</code>
 
 For Mac
-<code>ARG=$(jot -r 500 -1000 1000)</code>
+<code>ARG=$( (echo -2147483648; echo 2147483647; shuf -i 1-2000000000 -n 498 | awk '{print $1 - 1000000000}') | shuf | tr '\n' ' ')</code>
 
-<code>./push_swap $ARG | ./checker_linux $ARG</code>
+<code>./push_swap $ARG | ./checker_Linux $ARG</code>
 
 <code>./push_swap $ARG | wc -l</code>

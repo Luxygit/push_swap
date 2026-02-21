@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:44:30 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/21 18:34:36 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:59:34 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_stack
 int		is_sorted(t_stack *s);
 int		get_chunk_count(int size);
 int		get_sign(char *str, int *i);
+char	**merge_args(t_stack *s, int argc, char **argv);
 void	parse_input(t_stack *s, int argc, char **argv);
 void	error_exit(t_stack *s);
 void	bring_to_top(t_stack *s, int target);

@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:35 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/21 18:51:03 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:32 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,14 @@ void	parse_input(t_stack *s, int argc, char **argv)
 	int		i;
 
 	s->numbers = NULL;
-	if (argc == 2)
-		numbers = ft_split(argv[1], ' ');
-	else
-		numbers = argv + 1;
-	if (argc == 2 && !numbers)
+	numbers = merge_args(s, argc, argv);
+	if (!numbers)
 		error_exit(s);
-	if (argc == 2)
-		s->numbers = numbers;
+	s->numbers = numbers;
 	fill_stacks(s, numbers);
-	if (argc == 2)
-	{
-		s->numbers = NULL;
-		i = 0;
-		while (numbers[i])
-			free(numbers[i++]);
-		free(numbers);
-	}
+	s->numbers = NULL;
+	i = 0;
+	while (numbers[i])
+		free(numbers[i++]);
+	free(numbers);
 }

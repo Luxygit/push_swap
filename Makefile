@@ -6,24 +6,24 @@
 #    By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:31:55 by dievarga          #+#    #+#              #
-#    Updated: 2026/02/19 20:08:10 by dievarga         ###   ########.fr        #
+#    Updated: 2026/02/21 22:16:10 by dievarga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CC      	= cc
+CFLAGS  	= -Wall -Wextra -Werror
 
-NAME    = push_swap
+NAME    	= push_swap
 
-SRC_DIR	= src
-LIBFT_DIR = libft
-INC_DIR = includes
+SRC_DIR		= src
+LIBFT_DIR	= libft
+INC_DIR 	= includes
 
-INCLUDES = -I $(INC_DIR) -I $(LIBFT_DIR)
+INCLUDES 	= -I $(INC_DIR) -I $(LIBFT_DIR)
 
-LIBFT	= $(LIBFT_DIR)/libft.a
+LIBFT		= $(LIBFT_DIR)/libft.a
 
-SRCS	= \
+SRCS		= \
 		src/main.c \
 		src/parse.c \
 		src/index.c \
@@ -34,16 +34,17 @@ SRCS	= \
 		src/sort_small.c \
 		src/sort_chunks.c \
 		src/stack_utils.c \
+		src/parse_utils.c \
 		src/chunk_utils.c
 
-OBJS	= $(SRCS:.c=.o)
+OBJS		= $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	 $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
 
-$(LIBFT):
+$(LIBFT): FORCE
 	$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c $(INC_DIR)/push_swap.h Makefile
@@ -51,7 +52,6 @@ $(LIBFT):
 
 clean:
 	rm -f $(OBJS)
-	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
@@ -59,4 +59,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+FORCE:
+
+.PHONY: all clean fclean re FORCE
