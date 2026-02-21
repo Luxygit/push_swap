@@ -25,7 +25,10 @@ IF top A element index is within each chunk then push to B / IF index is lower t
 Testing
 - Generate 500 random numbers
 
+For Linux
 <code>ARG=$(seq -1000 1000 | shuf -n 500 | tr '\n' ' ')</code>
+
+For Mac
 <code>jot -r 500 -1000 1000</code>
 
 <code>./push_swap $ARG | ./checker_linux $ARG</code>
