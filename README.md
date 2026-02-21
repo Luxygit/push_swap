@@ -8,22 +8,25 @@ The goal is to sort a list of integers using a limited set of stack operations, 
 To be compiled with its makefile that at the same time compiles first the libft library with its own
 makefile and then the push_swap program is compiled.
 
-
 **"Resources"**
-This implementation uses:
+This program  uses:
 
+- structs t_stack, for the whole state of the program and t_elem for
+the value/index arrays inside the whole stack
+- free for the allocated array mem in case of errors
 - ft_atol_safe to clean the input
 - a sorted copy of stack A
-- Index normalization
+- Indexing
 - Hard coded Small sorting cases
-- Chunk-based sorting strategy: 
+- Chunk-based sorting: 
 
-IF top A element index is within each chunk then push to B / IF  number is lower than the middle of the chunk then RB to keep bigger numbers at the top. / Else rotate A until element index belongs to the chunk / WHILE B is not empty rotate it or reverserotate it to find the max index
+IF top A element index is within each chunk then push to B / IF index is lower than the middle of the chunk then RB to keep bigger numbers at the top. / Else rotate A until element index belongs to the chunk / WHILE B is not empty rotate it or reverserotate it to find the max index
 
 Testing
 - Generate 500 random numbers
 
 <code>ARG=$(seq -1000 1000 | shuf -n 500 | tr '\n' ' ')</code>
+<code>jot -r 500 -1000 1000</code>
 
 <code>./push_swap $ARG | ./checker_linux $ARG</code>
 

@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:28 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/19 17:44:36 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:45:48 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 		return (0);
 	s.a = NULL;
 	s.b = NULL;
+	s.numbers = NULL;
 	s.size_a = 0;
 	s.size_b = 0;
 	parse_input(&s, argc, argv);
@@ -29,7 +30,10 @@ int	main(int argc, char **argv)
 		if (s.size_a <= 5)
 			sort_small(&s);
 		else
-			sort_large(&s);
+		{
+			push_chunks_to_b(&s);
+			push_back_to_a(&s);
+		}
 	}
 	free_stack(&s);
 	return (0);

@@ -6,27 +6,21 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:35 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/19 20:10:57 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:51:03 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static	long	ft_atol_safe(char *str, t_stack *s)
+static	long	ft_atol(char *str, t_stack *s)
 {
 	long	res;
 	int		sign;
 	int		i;
 
 	res = 0;
-	sign = 1;
 	i = 0;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
+	sign = get_sign(str, &i);
 	if (!str[i])
 		error_exit(s);
 	while (str[i])
@@ -38,6 +32,8 @@ static	long	ft_atol_safe(char *str, t_stack *s)
 			error_exit(s);
 		i++;
 	}
+	if ((sign == 1 && res > 2147483647L) || (sign == -1 && res > 2147483648L))
+		error_exit(s);
 	return (res * sign);
 }
 
@@ -69,6 +65,8 @@ static void	fill_stacks(t_stack *s, char **numbers)
 	while (numbers[i])
 		i++;
 	count = i;
+	if (count == 0)
+		error_exit(s);
 	s->size_a = count;
 	s->size_b = 0;
 	s->a = malloc(sizeof(t_elem) * count);
@@ -78,7 +76,7 @@ static void	fill_stacks(t_stack *s, char **numbers)
 	i = 0;
 	while (i < count)
 	{
-		s->a[i].value = ft_atol_safe(numbers[i], s);
+		s->a[i].value = ft_atol(numbers[i], s);
 		i++;
 	}
 	check_duplicates(s);
@@ -89,21 +87,22 @@ void	parse_input(t_stack *s, int argc, char **argv)
 	char	**numbers;
 	int		i;
 
+	s->numbers = NULL;
 	if (argc == 2)
 		numbers = ft_split(argv[1], ' ');
 	else
 		numbers = argv + 1;
+	if (argc == 2 && !numbers)
+		error_exit(s);
+	if (argc == 2)
+		s->numbers = numbers;
 	fill_stacks(s, numbers);
-	i = 0;
 	if (argc == 2)
 	{
-		if (!numbers)
-			return ;
+		s->numbers = NULL;
+		i = 0;
 		while (numbers[i])
-		{
-			free(numbers[i]);
-			i++;
-		}
+			free(numbers[i++]);
 		free(numbers);
 	}
 }

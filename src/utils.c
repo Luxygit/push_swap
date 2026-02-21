@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:51:49 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/19 20:01:31 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:04:35 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,22 @@ int	is_sorted(t_stack *s)
 	return (1);
 }
 
-int	in_chunk(int index, int min, int max)
-{
-	return (index >= min && index <= max);
-}
-
 void	push_min_to_b(t_stack *s, int target)
 {
 	bring_to_top(s, target);
 	pb(s);
+}
+
+int	get_sign(char *str, int *i)
+{
+	int	sign;
+
+	sign = 1;
+	if (str[*i] == '+' || str[*i] == '-')
+	{
+		if (str[*i] == '-')
+			sign = -1;
+		(*i)++;
+	}
+	return (sign);
 }

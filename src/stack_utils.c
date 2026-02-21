@@ -6,7 +6,7 @@
 /*   By: dievarga <dievarga@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 20:35:34 by dievarga          #+#    #+#             */
-/*   Updated: 2026/02/19 19:52:37 by dievarga         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:48:28 by dievarga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,33 @@ void	bring_to_top(t_stack *s, int target)
 	while (s -> a[0].index != target)
 	{
 		if (pos <= s->size_a / 2)
+		{
 			ra(s);
+			pos--;
+		}
 		else
+		{
 			rra(s);
-		pos = find_pos(s->a, s->size_a, target);
+			pos++;
+		}
 	}
 }
 
 void	free_stack(t_stack *s)
 {
+	int	i;
+
+	if (s->numbers)
+	{
+		i = 0;
+		while (s->numbers[i])
+		{
+			free(s->numbers[i]);
+			i++;
+		}
+		free(s->numbers);
+		s->numbers = NULL;
+	}
 	free(s->a);
 	free(s->b);
 }
