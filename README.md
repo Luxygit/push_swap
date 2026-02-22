@@ -9,14 +9,14 @@ To be compiled with its makefile that at the same time compiles first the libft 
 makefile and then the push_swap program is compiled.
 
 **"Resources"**
-This program  uses:
+This program mainly uses:
 
-- structs t_stack, for the whole state of the program and t_elem for
-the value/index arrays inside the whole stack
-- free for the allocated array mem in case of errors
-- ft_atol_safe to clean the input
-- a sorted copy of stack A
-- Indexing
+- structs t_stack, for the whole state of the program and t_elem for the value/index pair arrays
+- free() for the malloc() allocated array mem
+- libft functions like split, isdigit 
+- ft_atol to clean the input
+- Sorted copy of stack A
+- Error messages and exit()
 - Hard coded Small sorting cases
 - Chunk-based sorting: 
 
@@ -31,6 +31,6 @@ For Linux
 For Mac
 <code>ARG=$( (echo -2147483648; echo 2147483647; shuf -i 1-2000000000 -n 498 | awk '{print $1 - 1000000000}') | shuf | tr '\n' ' ')</code>
 
-<code>./push_swap $ARG | ./checker_Linux $ARG</code>
+<code>./push_swap $ARG | ./checker_linux $ARG</code>
 
 <code>./push_swap $ARG | wc -l</code>
